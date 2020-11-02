@@ -1,0 +1,8 @@
+spring:
+  profiles: local
+swagger:
+  enable: true
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
