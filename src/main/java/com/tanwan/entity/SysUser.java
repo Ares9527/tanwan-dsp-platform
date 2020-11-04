@@ -1,43 +1,36 @@
 package com.tanwan.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 @Data
-@ApiModel("用户")
-public class SysUser extends Model<SysUser> {
+@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
+@ApiModel(value="SysUser对象", description="系统用户")
+public class SysUser extends BaseEntity {
 
-    @ApiModelProperty("用户id")
-    @NotNull(message = "用户id不能为空")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("用户账号")
     @NotNull(message = "用户账号不能为空")
     @Size(min = 6, max = 11, message = "账号长度必须是6-11个字符")
+    @ApiModelProperty("用户账号")
     private String account;
 
-    @ApiModelProperty("用户密码")
     @NotNull(message = "用户密码不能为空")
     @Size(min = 6, max = 11, message = "密码长度必须是6-16个字符")
+    @ApiModelProperty("用户密码")
     private String password;
 
-    @ApiModelProperty("用户邮箱")
     @NotNull(message = "用户邮箱不能为空")
     @Email(message = "邮箱格式不正确")
+    @ApiModelProperty("用户邮箱")
     private String email;
 
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
 }
