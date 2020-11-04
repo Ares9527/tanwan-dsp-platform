@@ -1,8 +1,15 @@
 spring:
   profiles: local
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tanwan-dsp?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: admin
 swagger:
   enable: true
 logging:
   level:
     root: INFO
     org.springframework.web: DEBUG
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
